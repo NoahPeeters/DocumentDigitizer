@@ -7,9 +7,12 @@
 //
 
 import Cocoa
+import ImageCaptureCore
 
 class SettingsHandler: NSObject {
     static let shared = SettingsHandler()
+    static let persistentDeviceHandler = PersistentObjectHandler<ICDevice>(stringsKey: "DevicesIDStrings", notificationName: nil)
+    static let persistentLanguageHandler = PersistentObjectHandler<TesseractLanguage>(stringsKey: "LanguageStrings", notificationName: NSNotification.Name.TesseractLanguageSelectionChanged)
     
     private static let importKey = "importEnabled"
     private static let importKeepOriginalKey = "importKeepOriginal"
@@ -71,11 +74,14 @@ class SettingsHandler: NSObject {
         }
     }
     
+    var selectedLanguages: [TesseractLanguage] {
+        return TesseractLanguage.listFromArray(Array(SettingsHandler.persistentLanguageHandler.strings))
+    }
+    
     private static var defaultPath: URL {
         let string = NSString(string: "~/Documents").expandingTildeInPath
         
         return URL.init(fileURLWithPath: string)
-        
     }
     
     override private init() {

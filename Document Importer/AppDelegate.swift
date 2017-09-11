@@ -8,15 +8,16 @@
 
 import Cocoa
 
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
-
-
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
         NSUserNotificationCenter.default.delegate = self
         DocumentImporter.shared.startScanning()
+        
+        Tesseract.shared.reloadLanguageList()
     }
 
     // Show all notifications

@@ -49,6 +49,7 @@ class MenuBarController: NSObject {
         }
     }
     
+    @IBOutlet weak var languagesMenu: NSMenu!
     @IBOutlet weak var devicesMenu: NSMenu!
     private let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     
@@ -71,6 +72,14 @@ class MenuBarController: NSObject {
         NotificationCenter.default.addObserver(forName: NSNotification.Name.SettingsHandlerImportPathChanged, object: nil, queue: nil) { [weak self] _ in
             self?.updateImportPathMenuItem()
         }
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.TesseractLanguageListChanged, object: nil, queue: nil) { [weak self] _ in
+            self?.refreshLanguagesList()
+        }
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.TesseractLanguageSelectionChanged, object: nil, queue: nil) { [weak self] _ in
+            self?.refreshLanguagesList()
+        }
     }
     
     private func refreshDeviceList() {
@@ -83,8 +92,32 @@ class MenuBarController: NSObject {
             devicesMenu.addItem(NSMenuItem(title: userMessage, action: nil, keyEquivalent: ""))
         } else {
             for device in devices {
-                devicesMenu.addItem(DeviveMenuItem(device))
+                let item = PersistentObjectMenuItem(device, persistentObjectHandler: SettingsHandler.persistentDeviceHandler)
+                devicesMenu.addItem(item)
             }
+        }
+    }
+    
+    private func refreshLanguagesList() {
+        languagesMenu.removeAllItems()
+        
+        let languageHandler = SettingsHandler.persistentLanguageHandler
+        
+        let languages = Tesseract.shared.languageList.sorted { (l1, l2) in
+            let l1Enabled = languageHandler.isEnabled(l1)
+            let l2Enabled = languageHandler.isEnabled(l2)
+            
+            if l1Enabled != l2Enabled {
+                return l1Enabled
+            }
+            
+            return l1.uiString.lowercased() < l2.uiString.lowercased()
+            
+        }
+        
+        for language in languages {
+            let item = PersistentObjectMenuItem(language, persistentObjectHandler: languageHandler)
+            languagesMenu.addItem(item)
         }
     }
     

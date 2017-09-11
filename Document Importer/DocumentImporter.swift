@@ -48,7 +48,7 @@ class DocumentImporter: NSObject {
     fileprivate func handleItem(_ item: ICCameraItem) {
         guard SettingsHandler.shared.importingEnabled,
             item.uti == kUTTypeImage as String,
-            PersistentDeviceHandler.shared.isDeviceEnabled(item.device),
+            SettingsHandler.persistentDeviceHandler.isEnabled(item.device),
             let file = item as? ICCameraFile,
             item.description.contains("Scannable Document") else {
             return
@@ -63,26 +63,18 @@ class DocumentImporter: NSObject {
         file.device.requestDownloadFile(file, options: options, downloadDelegate: self, didDownloadSelector: #selector(didDownloadFile), contextInfo: nil)
     }
     
-    fileprivate func convertFile(_ file: ICCameraFile, withURL url: URL) {
+    fileprivate func convertFile(_ file: ICCameraFile, withURL inputURL: URL) {
         
-        let outputURL = url.deletingPathExtension()
-        let outputURLWithExtension = outputURL.appendingPathExtension("pdf")
+        let outputURL = inputURL.deletingPathExtension().appendingPathExtension("pdf")
         
-        let process = Process()
-        process.currentDirectoryPath = SettingsHandler.shared.importURL.path
-        process.launchPath = "/usr/local/bin/tesseract"
-        process.arguments = [url.path, outputURL.path, "pdf"]
+        let languages = SettingsHandler.shared.selectedLanguages
         
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            //launch and wait
-            process.launch()
-            process.waitUntilExit()
-            
-            self?.importCompleted(ofFile: file, withURL: outputURLWithExtension)
+        Tesseract.shared.run(inputURL: inputURL, outputURL: outputURL, languages: languages) { [weak self] in
+            self?.importCompleted(ofFile: file, withURL: outputURL)
             
             if !SettingsHandler.shared.convertKeepOriginalEnabled,
-                FileManager.default.fileExists(atPath: outputURLWithExtension.path) {
-                try? FileManager.default.removeItem(at: url)
+                FileManager.default.fileExists(atPath: outputURL.path) {
+                try? FileManager.default.trashItem(at: inputURL, resultingItemURL: nil)
             }
         }
         
@@ -95,7 +87,7 @@ class DocumentImporter: NSObject {
 
         let notification = NSUserNotification()
         notification.title = NSLocalizedString("NotificationDownloadCompletedTitle", comment: "")
-        notification.informativeText = file.name
+        notification.informativeText = url.lastPathComponent
         notification.identifier = url.absoluteString
         notification.hasActionButton = true
         notification.actionButtonTitle = NSLocalizedString("NotificationDownloadCompletedOpenButton", comment: "")
@@ -165,4 +157,6 @@ extension NSNotification.Name {
     static let DocumentImporterDeviceListChanged = NSNotification.Name("DocumentImporterDeviceListChanged")
     static let DocumentImporterScannerStateChanged = NSNotification.Name("DocumentImporterScannerStateChanged")
     static let SettingsHandlerImportPathChanged = NSNotification.Name("SettingsHandlerImportPathChanged")
+    static let TesseractLanguageListChanged = NSNotification.Name("TesseractLanguageListChanged")
+    static let TesseractLanguageSelectionChanged = NSNotification.Name("TesseractLanguageSelectionChanged")
 }

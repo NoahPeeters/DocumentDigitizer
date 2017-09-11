@@ -14,10 +14,13 @@
 		400A5CBA1F65FB5700224F76 /* DocumentImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400A5CB91F65FB5700224F76 /* DocumentImporter.swift */; };
 		402A5A711F66A4110031AFBC /* MenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402A5A701F66A4110031AFBC /* MenuBarController.swift */; };
 		402A5A731F66A81F0031AFBC /* NSMenuItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402A5A721F66A81F0031AFBC /* NSMenuItemExtension.swift */; };
-		402A5A751F66B35E0031AFBC /* DeviceMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402A5A741F66B35E0031AFBC /* DeviceMenuItem.swift */; };
-		402A5A771F66B6070031AFBC /* PersistentDeviceHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402A5A761F66B6070031AFBC /* PersistentDeviceHandler.swift */; };
+		402A5A751F66B35E0031AFBC /* PersistentObjectMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402A5A741F66B35E0031AFBC /* PersistentObjectMenuItem.swift */; };
 		402A5A791F66C1FA0031AFBC /* SettingsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402A5A781F66C1FA0031AFBC /* SettingsHandler.swift */; };
 		402A5A7C1F66C73B0031AFBC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 402A5A7E1F66C73B0031AFBC /* Localizable.strings */; };
+		408E7C261F66F757002381C4 /* Tesseract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408E7C251F66F757002381C4 /* Tesseract.swift */; };
+		408E7C281F670641002381C4 /* PersistentStringHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408E7C271F670641002381C4 /* PersistentStringHandler.swift */; };
+		408E7C2A1F6709AC002381C4 /* ICDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408E7C291F6709AC002381C4 /* ICDeviceExtension.swift */; };
+		408E7C2C1F671FBC002381C4 /* TesseractLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408E7C2B1F671FBC002381C4 /* TesseractLanguage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,12 +46,15 @@
 		400C80A71F66D2F40074690A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		402A5A701F66A4110031AFBC /* MenuBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBarController.swift; sourceTree = "<group>"; };
 		402A5A721F66A81F0031AFBC /* NSMenuItemExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMenuItemExtension.swift; sourceTree = "<group>"; };
-		402A5A741F66B35E0031AFBC /* DeviceMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceMenuItem.swift; sourceTree = "<group>"; };
-		402A5A761F66B6070031AFBC /* PersistentDeviceHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentDeviceHandler.swift; sourceTree = "<group>"; };
+		402A5A741F66B35E0031AFBC /* PersistentObjectMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentObjectMenuItem.swift; sourceTree = "<group>"; };
 		402A5A781F66C1FA0031AFBC /* SettingsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsHandler.swift; sourceTree = "<group>"; };
 		402A5A7D1F66C73B0031AFBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		402A5A801F66C7460031AFBC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		403B5E541F66131900CE5E50 /* Document Importer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Document Importer.entitlements"; sourceTree = "<group>"; };
+		408E7C251F66F757002381C4 /* Tesseract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tesseract.swift; sourceTree = "<group>"; };
+		408E7C271F670641002381C4 /* PersistentStringHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStringHandler.swift; sourceTree = "<group>"; };
+		408E7C291F6709AC002381C4 /* ICDeviceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICDeviceExtension.swift; sourceTree = "<group>"; };
+		408E7C2B1F671FBC002381C4 /* TesseractLanguage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TesseractLanguage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,11 +99,14 @@
 				403B5E541F66131900CE5E50 /* Document Importer.entitlements */,
 				400A5C9C1F65FB3B00224F76 /* AppDelegate.swift */,
 				400A5CB91F65FB5700224F76 /* DocumentImporter.swift */,
-				402A5A761F66B6070031AFBC /* PersistentDeviceHandler.swift */,
+				408E7C271F670641002381C4 /* PersistentStringHandler.swift */,
+				408E7C251F66F757002381C4 /* Tesseract.swift */,
 				402A5A781F66C1FA0031AFBC /* SettingsHandler.swift */,
 				402A5A701F66A4110031AFBC /* MenuBarController.swift */,
 				402A5A721F66A81F0031AFBC /* NSMenuItemExtension.swift */,
-				402A5A741F66B35E0031AFBC /* DeviceMenuItem.swift */,
+				408E7C291F6709AC002381C4 /* ICDeviceExtension.swift */,
+				408E7C2B1F671FBC002381C4 /* TesseractLanguage.swift */,
+				402A5A741F66B35E0031AFBC /* PersistentObjectMenuItem.swift */,
 				402A5A7E1F66C73B0031AFBC /* Localizable.strings */,
 				400A5CA01F65FB3B00224F76 /* Assets.xcassets */,
 				400A5CA21F65FB3B00224F76 /* Main.storyboard */,
@@ -226,13 +235,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				408E7C2C1F671FBC002381C4 /* TesseractLanguage.swift in Sources */,
+				408E7C261F66F757002381C4 /* Tesseract.swift in Sources */,
 				400A5CBA1F65FB5700224F76 /* DocumentImporter.swift in Sources */,
-				402A5A751F66B35E0031AFBC /* DeviceMenuItem.swift in Sources */,
+				402A5A751F66B35E0031AFBC /* PersistentObjectMenuItem.swift in Sources */,
 				402A5A711F66A4110031AFBC /* MenuBarController.swift in Sources */,
 				402A5A731F66A81F0031AFBC /* NSMenuItemExtension.swift in Sources */,
 				400A5C9D1F65FB3B00224F76 /* AppDelegate.swift in Sources */,
+				408E7C281F670641002381C4 /* PersistentStringHandler.swift in Sources */,
 				402A5A791F66C1FA0031AFBC /* SettingsHandler.swift in Sources */,
-				402A5A771F66B6070031AFBC /* PersistentDeviceHandler.swift in Sources */,
+				408E7C2A1F6709AC002381C4 /* ICDeviceExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
