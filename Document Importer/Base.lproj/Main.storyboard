@@ -662,6 +662,7 @@
                         <outlet property="convertKeepOriginalMenuItem" destination="SV6-ng-8j2" id="KHO-74-GOu"/>
                         <outlet property="convertMenuItem" destination="ess-oF-m6T" id="SGd-6u-HMn"/>
                         <outlet property="devicesMenu" destination="5Jv-te-DJ7" id="4em-lb-UsD"/>
+                        <outlet property="importKeepOriginalMenuItem" destination="n0a-yA-zLT" id="m1h-5d-qmb"/>
                         <outlet property="importPathMenuItem" destination="b3h-RY-UX0" id="K0W-2M-JsC"/>
                         <outlet property="importingMenuItem" destination="84X-i2-mfh" id="GZc-DB-4O7"/>
                         <outlet property="statusMenu" destination="IE7-lB-QER" id="WtL-uE-LK5"/>

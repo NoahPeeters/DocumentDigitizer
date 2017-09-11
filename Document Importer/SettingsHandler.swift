@@ -11,12 +11,12 @@ import Cocoa
 class SettingsHandler: NSObject {
     static let shared = SettingsHandler()
     
-    private static let importKey = "importKey"
-    private static let importKeepOriginalKey = "importKeepOriginalKey"
-    private static let convertKey = "convertKey"
-    private static let convertKeepOriginalKey = "convertKeepOriginalKey"
-    private static let autoOpenKey = "autoOpenKey"
-    private static let importURLKey = "importURLKey"
+    private static let importKey = "importEnabled"
+    private static let importKeepOriginalKey = "importKeepOriginal"
+    private static let convertKey = "converEnabled"
+    private static let convertKeepOriginalKey = "convertKeepOriginal"
+    private static let autoOpenKey = "autoOpenEnabled"
+    private static let importURLKey = "importURL"
     
     private let userDefaults = UserDefaults.standard
     

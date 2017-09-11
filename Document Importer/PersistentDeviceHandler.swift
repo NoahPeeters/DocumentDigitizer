@@ -12,7 +12,7 @@ import ImageCaptureCore
 class PersistentDeviceHandler {
     static let shared = PersistentDeviceHandler()
     
-    private static let devicesIDStringsKey = "DevicesIDStringsKey"
+    private static let devicesIDStringsKey = "DevicesIDStrings"
     
     private let userDefaults = UserDefaults.standard
     
