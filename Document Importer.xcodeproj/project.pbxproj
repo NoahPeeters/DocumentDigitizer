@@ -8,10 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		400A5C9D1F65FB3B00224F76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400A5C9C1F65FB3B00224F76 /* AppDelegate.swift */; };
-		400A5C9F1F65FB3B00224F76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400A5C9E1F65FB3B00224F76 /* ViewController.swift */; };
 		400A5CA11F65FB3B00224F76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 400A5CA01F65FB3B00224F76 /* Assets.xcassets */; };
 		400A5CA41F65FB3B00224F76 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 400A5CA21F65FB3B00224F76 /* Main.storyboard */; };
 		400A5CAF1F65FB3B00224F76 /* Document_ImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400A5CAE1F65FB3B00224F76 /* Document_ImporterTests.swift */; };
+		400A5CBA1F65FB5700224F76 /* DocumentImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400A5CB91F65FB5700224F76 /* DocumentImporter.swift */; };
+		402A5A711F66A4110031AFBC /* MenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402A5A701F66A4110031AFBC /* MenuBarController.swift */; };
+		402A5A731F66A81F0031AFBC /* NSMenuItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402A5A721F66A81F0031AFBC /* NSMenuItemExtension.swift */; };
+		402A5A751F66B35E0031AFBC /* DeviceMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402A5A741F66B35E0031AFBC /* DeviceMenuItem.swift */; };
+		402A5A771F66B6070031AFBC /* PersistentDeviceHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402A5A761F66B6070031AFBC /* PersistentDeviceHandler.swift */; };
+		402A5A791F66C1FA0031AFBC /* SettingsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402A5A781F66C1FA0031AFBC /* SettingsHandler.swift */; };
+		402A5A7C1F66C73B0031AFBC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 402A5A7E1F66C73B0031AFBC /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,13 +33,21 @@
 /* Begin PBXFileReference section */
 		400A5C991F65FB3B00224F76 /* Document Importer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Document Importer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		400A5C9C1F65FB3B00224F76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		400A5C9E1F65FB3B00224F76 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		400A5CA01F65FB3B00224F76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		400A5CA31F65FB3B00224F76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		400A5CA51F65FB3B00224F76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		400A5CAA1F65FB3B00224F76 /* Document ImporterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Document ImporterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		400A5CAE1F65FB3B00224F76 /* Document_ImporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document_ImporterTests.swift; sourceTree = "<group>"; };
 		400A5CB01F65FB3B00224F76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		400A5CB91F65FB5700224F76 /* DocumentImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentImporter.swift; sourceTree = "<group>"; };
+		402A5A701F66A4110031AFBC /* MenuBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBarController.swift; sourceTree = "<group>"; };
+		402A5A721F66A81F0031AFBC /* NSMenuItemExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMenuItemExtension.swift; sourceTree = "<group>"; };
+		402A5A741F66B35E0031AFBC /* DeviceMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceMenuItem.swift; sourceTree = "<group>"; };
+		402A5A761F66B6070031AFBC /* PersistentDeviceHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentDeviceHandler.swift; sourceTree = "<group>"; };
+		402A5A781F66C1FA0031AFBC /* SettingsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsHandler.swift; sourceTree = "<group>"; };
+		402A5A7D1F66C73B0031AFBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		402A5A801F66C7460031AFBC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		403B5E541F66131900CE5E50 /* Document Importer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Document Importer.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,8 +89,15 @@
 		400A5C9B1F65FB3B00224F76 /* Document Importer */ = {
 			isa = PBXGroup;
 			children = (
+				403B5E541F66131900CE5E50 /* Document Importer.entitlements */,
 				400A5C9C1F65FB3B00224F76 /* AppDelegate.swift */,
-				400A5C9E1F65FB3B00224F76 /* ViewController.swift */,
+				400A5CB91F65FB5700224F76 /* DocumentImporter.swift */,
+				402A5A761F66B6070031AFBC /* PersistentDeviceHandler.swift */,
+				402A5A781F66C1FA0031AFBC /* SettingsHandler.swift */,
+				402A5A701F66A4110031AFBC /* MenuBarController.swift */,
+				402A5A721F66A81F0031AFBC /* NSMenuItemExtension.swift */,
+				402A5A741F66B35E0031AFBC /* DeviceMenuItem.swift */,
+				402A5A7E1F66C73B0031AFBC /* Localizable.strings */,
 				400A5CA01F65FB3B00224F76 /* Assets.xcassets */,
 				400A5CA21F65FB3B00224F76 /* Main.storyboard */,
 				400A5CA51F65FB3B00224F76 /* Info.plist */,
@@ -145,6 +166,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 52A793VRAY;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 					400A5CA91F65FB3B00224F76 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -161,6 +187,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 400A5C901F65FB3B00224F76;
 			productRefGroup = 400A5C9A1F65FB3B00224F76 /* Products */;
@@ -179,6 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				400A5CA11F65FB3B00224F76 /* Assets.xcassets in Resources */,
+				402A5A7C1F66C73B0031AFBC /* Localizable.strings in Resources */,
 				400A5CA41F65FB3B00224F76 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,8 +225,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				400A5C9F1F65FB3B00224F76 /* ViewController.swift in Sources */,
+				400A5CBA1F65FB5700224F76 /* DocumentImporter.swift in Sources */,
+				402A5A751F66B35E0031AFBC /* DeviceMenuItem.swift in Sources */,
+				402A5A711F66A4110031AFBC /* MenuBarController.swift in Sources */,
+				402A5A731F66A81F0031AFBC /* NSMenuItemExtension.swift in Sources */,
 				400A5C9D1F65FB3B00224F76 /* AppDelegate.swift in Sources */,
+				402A5A791F66C1FA0031AFBC /* SettingsHandler.swift in Sources */,
+				402A5A771F66B6070031AFBC /* PersistentDeviceHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,6 +262,15 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
+		402A5A7E1F66C73B0031AFBC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				402A5A7D1F66C73B0031AFBC /* Base */,
+				402A5A801F66C7460031AFBC /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -236,6 +278,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -286,6 +329,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -403,6 +447,7 @@
 				400A5CB51F65FB3B00224F76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		400A5CB61F65FB3B00224F76 /* Build configuration list for PBXNativeTarget "Document ImporterTests" */ = {
 			isa = XCConfigurationList;
@@ -411,6 +456,7 @@
 				400A5CB81F65FB3B00224F76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
