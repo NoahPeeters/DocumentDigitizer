@@ -40,6 +40,7 @@
 		400A5CAE1F65FB3B00224F76 /* Document_ImporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document_ImporterTests.swift; sourceTree = "<group>"; };
 		400A5CB01F65FB3B00224F76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		400A5CB91F65FB5700224F76 /* DocumentImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentImporter.swift; sourceTree = "<group>"; };
+		400C80A71F66D2F40074690A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		402A5A701F66A4110031AFBC /* MenuBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBarController.swift; sourceTree = "<group>"; };
 		402A5A721F66A81F0031AFBC /* NSMenuItemExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMenuItemExtension.swift; sourceTree = "<group>"; };
 		402A5A741F66B35E0031AFBC /* DeviceMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceMenuItem.swift; sourceTree = "<group>"; };
@@ -258,6 +259,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				400A5CA31F65FB3B00224F76 /* Base */,
+				400C80A71F66D2F40074690A /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

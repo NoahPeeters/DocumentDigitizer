@@ -659,9 +659,11 @@
                 <customObject id="MdP-mr-Ksk" customClass="MenuBarController" customModule="Document_Importer" customModuleProvider="target">
                     <connections>
                         <outlet property="autoOpenMenuItem" destination="mMd-cK-ksg" id="y8t-wD-nwD"/>
+                        <outlet property="convertKeepOriginalMenuItem" destination="SV6-ng-8j2" id="KHO-74-GOu"/>
                         <outlet property="convertMenuItem" destination="ess-oF-m6T" id="SGd-6u-HMn"/>
                         <outlet property="devicesMenu" destination="5Jv-te-DJ7" id="4em-lb-UsD"/>
-                        <outlet property="importingMenuUtem" destination="84X-i2-mfh" id="8np-ST-pBJ"/>
+                        <outlet property="importPathMenuItem" destination="b3h-RY-UX0" id="K0W-2M-JsC"/>
+                        <outlet property="importingMenuItem" destination="84X-i2-mfh" id="GZc-DB-4O7"/>
                         <outlet property="statusMenu" destination="IE7-lB-QER" id="WtL-uE-LK5"/>
                     </connections>
                 </customObject>
@@ -673,19 +675,45 @@
                                 <action selector="toggleScanning:" target="MdP-mr-Ksk" id="f97-Ci-D7c"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Importing" state="on" id="84X-i2-mfh">
+                        <menuItem title="Importing" id="7z7-XL-15D">
                             <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <action selector="toggleImporting:" target="MdP-mr-Ksk" id="80i-o5-UCg"/>
-                            </connections>
+                            <menu key="submenu" title="Importing" id="ecW-4i-ncM">
+                                <items>
+                                    <menuItem title="Importing" id="84X-i2-mfh">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="toggleImporting:" target="MdP-mr-Ksk" id="wzQ-y6-kOF"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Keep Original" id="n0a-yA-zLT">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="toggleImportKeepOriginal:" target="MdP-mr-Ksk" id="tsf-P0-4WA"/>
+                                        </connections>
+                                    </menuItem>
+                                </items>
+                            </menu>
                         </menuItem>
-                        <menuItem title="Convert" state="on" id="ess-oF-m6T">
+                        <menuItem title="Convert" id="gDN-59-BPe">
                             <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <action selector="toggleConverting:" target="MdP-mr-Ksk" id="Fbc-HT-Ir9"/>
-                            </connections>
+                            <menu key="submenu" title="Convert" id="KGT-L6-p4b">
+                                <items>
+                                    <menuItem title="Convert" id="ess-oF-m6T">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="toggleConverting:" target="MdP-mr-Ksk" id="Fbc-HT-Ir9"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Keep Original" id="SV6-ng-8j2">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="toggleConvertKeepOriginal:" target="MdP-mr-Ksk" id="nan-lt-nwR"/>
+                                        </connections>
+                                    </menuItem>
+                                </items>
+                            </menu>
                         </menuItem>
-                        <menuItem title="Auto Open" state="on" id="mMd-cK-ksg">
+                        <menuItem title="Auto Open" id="mMd-cK-ksg">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="toggleAutoOpen:" target="MdP-mr-Ksk" id="jdA-wY-vFu"/>
@@ -708,6 +736,9 @@
                                     </menuItem>
                                     <menuItem title="/tmp" id="b3h-RY-UX0">
                                         <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="openImportPath:" target="MdP-mr-Ksk" id="Nsq-jD-luK"/>
+                                        </connections>
                                     </menuItem>
                                 </items>
                             </menu>

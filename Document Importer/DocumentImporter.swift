@@ -54,39 +54,62 @@ class DocumentImporter: NSObject {
             return
         }
         
-        print("Found file with name \(file.name)")
-        
         let options = [
             ICDownloadsDirectoryURL: SettingsHandler.shared.importURL,
-            ICDeleteAfterSuccessfulDownload: true,
+            ICDeleteAfterSuccessfulDownload: !SettingsHandler.shared.importKeepOriginalEnabled,
             ICOverwrite: true
         ] as [String : Any]
         
         file.device.requestDownloadFile(file, options: options, downloadDelegate: self, didDownloadSelector: #selector(didDownloadFile), contextInfo: nil)
     }
     
+    fileprivate func convertFile(_ file: ICCameraFile, withURL url: URL) {
+        
+        let outputURL = url.deletingPathExtension()
+        let outputURLWithExtension = outputURL.appendingPathExtension("pdf")
+        
+        let process = Process()
+        process.currentDirectoryPath = SettingsHandler.shared.importURL.path
+        process.launchPath = "/usr/local/bin/tesseract"
+        process.arguments = [url.path, outputURL.path, "pdf"]
+        
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            //launch and wait
+            process.launch()
+            process.waitUntilExit()
+            
+            self?.importCompleted(ofFile: file, withURL: outputURLWithExtension)
+            
+            if !SettingsHandler.shared.convertKeepOriginalEnabled,
+                FileManager.default.fileExists(atPath: outputURLWithExtension.path) {
+                try? FileManager.default.removeItem(at: url)
+            }
+        }
+        
+    }
+    
     fileprivate func importCompleted(ofFile file: ICCameraFile, withURL url: URL) {
-        
-        let notification = NSUserNotification()
-        notification.title = "Download completed"
-        notification.informativeText = file.name
-        notification.identifier = url.absoluteString
-        notification.hasActionButton = true
-        notification.actionButtonTitle = "Open"
-        
         if SettingsHandler.shared.autoOpenEnabled {
             NSWorkspace.shared().open(url)
         }
-        
+
+        let notification = NSUserNotification()
+        notification.title = NSLocalizedString("NotificationDownloadCompletedTitle", comment: "")
+        notification.informativeText = file.name
+        notification.identifier = url.absoluteString
+        notification.hasActionButton = true
+        notification.actionButtonTitle = NSLocalizedString("NotificationDownloadCompletedOpenButton", comment: "")
         NSUserNotificationCenter.default.scheduleNotification(notification)
     }
     
     func startScanning() {
         browser.start()
+        NotificationCenter.default.post(name: NSNotification.Name.DocumentImporterScannerStateChanged, object: nil)
     }
     
     func stopScanning() {
         browser.stop()
+        NotificationCenter.default.post(name: NSNotification.Name.DocumentImporterScannerStateChanged, object: nil)
     }
 }
 
@@ -121,22 +144,25 @@ extension DocumentImporter: ICCameraDeviceDelegate {
 
 extension DocumentImporter: ICCameraDeviceDownloadDelegate {
     func didDownloadFile(_ file: ICCameraFile, error: Error?, options: [String : Any]? = nil, contextInfo: UnsafeMutableRawPointer?) {
-        
-        
-        
         if let error = error {
             let notification = NSUserNotification()
             notification.identifier = file.name
-            notification.title = "Error while downloading"
+            notification.title = NSLocalizedString("NotificationDownloadCompletedErrorTitle", comment: "")
             notification.informativeText = error.localizedDescription
             NSUserNotificationCenter.default.scheduleNotification(notification)
         } else {
-            let url = (options![ICDownloadsDirectoryURL] as! URL).appendingPathComponent(file.name, isDirectory: false)
-            importCompleted(ofFile: file, withURL: url)
+            let url = SettingsHandler.shared.importURL.appendingPathComponent(file.name, isDirectory: false)
+            if SettingsHandler.shared.convertingEnabled {
+                convertFile(file, withURL: url)
+            } else {
+                importCompleted(ofFile: file, withURL: url)
+            }
         }
     }
 }
 
 extension NSNotification.Name {
     static let DocumentImporterDeviceListChanged = NSNotification.Name("DocumentImporterDeviceListChanged")
+    static let DocumentImporterScannerStateChanged = NSNotification.Name("DocumentImporterScannerStateChanged")
+    static let SettingsHandlerImportPathChanged = NSNotification.Name("SettingsHandlerImportPathChanged")
 }

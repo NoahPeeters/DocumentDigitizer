@@ -5,3 +5,14 @@
   Created by Noah Peeters on 11.09.17.
   Copyright © 2017 Noah Peeters. All rights reserved.
 */
+
+"NotificationDownloadCompletedTitle"="Download Abgeschlossen";
+"NotificationDownloadCompletedErrorTitle"="Es ist ein Fehler aufgetreten";
+"NotificationDownloadCompletedOpenButton"="Öffnen";
+
+"DefaultDeviceName"="Unbenannt";
+"ScanningNoDevicesFound"="Keine Geräte gefunden";
+"ScanningScanningDisabled"="Scanning deaktiviert";
+
+"OpenPanelTitle"="Wähle einen Ornder für Importe.";
+"OpenPanelPrompt"="Auswählen";

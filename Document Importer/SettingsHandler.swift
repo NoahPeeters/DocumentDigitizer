@@ -8,11 +8,13 @@
 
 import Cocoa
 
-class SettingsHandler {
+class SettingsHandler: NSObject {
     static let shared = SettingsHandler()
     
     private static let importKey = "importKey"
+    private static let importKeepOriginalKey = "importKeepOriginalKey"
     private static let convertKey = "convertKey"
+    private static let convertKeepOriginalKey = "convertKeepOriginalKey"
     private static let autoOpenKey = "autoOpenKey"
     private static let importURLKey = "importURLKey"
     
@@ -34,10 +36,24 @@ class SettingsHandler {
         }
     }
     
+    /// enable and disable import keep original
+    var importKeepOriginalEnabled: Bool {
+        didSet {
+            userDefaults.set(importKeepOriginalEnabled, forKey: SettingsHandler.importKeepOriginalKey)
+        }
+    }
+    
     /// enable and disable converting
     var convertingEnabled: Bool {
         didSet {
             userDefaults.set(convertingEnabled, forKey: SettingsHandler.convertKey)
+        }
+    }
+    
+    /// enable and disable convert keep original
+    var convertKeepOriginalEnabled: Bool {
+        didSet {
+            userDefaults.set(convertKeepOriginalEnabled, forKey: SettingsHandler.convertKeepOriginalKey)
         }
     }
     
@@ -51,6 +67,7 @@ class SettingsHandler {
     var importURL: URL {
         didSet {
             userDefaults.set(importURL, forKey: SettingsHandler.importURLKey)
+            NotificationCenter.default.post(name: NSNotification.Name.SettingsHandlerImportPathChanged, object: nil)
         }
     }
     
@@ -61,13 +78,13 @@ class SettingsHandler {
         
     }
     
-    private init() {
+    override private init() {
         importingEnabled = userDefaults.bool(forKey: SettingsHandler.importKey)
+        importKeepOriginalEnabled = userDefaults.bool(forKey: SettingsHandler.importKeepOriginalKey)
         convertingEnabled = userDefaults.bool(forKey: SettingsHandler.convertKey)
+        convertKeepOriginalEnabled = userDefaults.bool(forKey: SettingsHandler.convertKeepOriginalKey)
         autoOpenEnabled = userDefaults.bool(forKey: SettingsHandler.autoOpenKey)
         importURL = userDefaults.url(forKey: SettingsHandler.importURLKey) ?? SettingsHandler.defaultPath
-        
-        print(importURL.absoluteString)
     }
     
     func askUserForNewPath() {
@@ -76,9 +93,15 @@ class SettingsHandler {
         openPanel.canChooseDirectories = true
         openPanel.canChooseFiles = false
         openPanel.allowsMultipleSelection = false
-//        openPanel
-        
-//        openPanel.
-        
+        openPanel.directoryURL = importURL
+        openPanel.title = NSLocalizedString("OpenPanelTitle", comment: "")
+        openPanel.prompt = NSLocalizedString("OpenPanelPrompt", comment: "")
+        openPanel.begin { [weak self] result in
+            guard result == NSFileHandlingPanelOKButton, openPanel.urls.count == 1 else {
+                return
+            }
+            
+            self?.importURL = openPanel.urls[0]
+        }
     }
 }

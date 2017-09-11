@@ -1,0 +1,77 @@
+
+/* Class = "NSMenuItem"; title = "Scanning"; ObjectID = "S75-y7-7qp"; */
+"S75-y7-7qp.title" = "Scannen";
+
+
+
+/* Class = "NSMenu"; title = "Importing"; ObjectID = "ecW-4i-ncM"; */
+"ecW-4i-ncM.title" = "Importiren";
+
+/* Class = "NSMenuItem"; title = "Importing"; ObjectID = "ecW-4i-ncM"; */
+"7z7-XL-15D.title" = "Importiren";
+
+/* Class = "NSMenuItem"; title = "Importing"; ObjectID = "84X-i2-mfh"; */
+"84X-i2-mfh.title" = "Importiren";
+
+/* Class = "NSMenuItem"; title = "Keep Original"; ObjectID = "SV6-ng-8j2"; */
+"SV6-ng-8j2.title" = "Original behalten";
+
+
+
+
+
+/* Class = "NSMenu"; title = "Convert"; ObjectID = "KGT-L6-p4b"; */
+"KGT-L6-p4b.title" = "Konvertieren";
+
+/* Class = "NSMenuItem"; title = "Convert"; ObjectID = "KGT-L6-p4b"; */
+"gDN-59-BPe.title" = "Konvertieren";
+
+/* Class = "NSMenuItem"; title = "Convert"; ObjectID = "ess-oF-m6T"; */
+"ess-oF-m6T.title" = "Konvertieren";
+
+/* Class = "NSMenuItem"; title = "Keep Original"; ObjectID = "n0a-yA-zLT"; */
+"n0a-yA-zLT.title" = "Original behalten";
+
+
+
+
+
+/* Class = "NSMenuItem"; title = "Auto Open"; ObjectID = "mMd-cK-ksg"; */
+"mMd-cK-ksg.title" = "Automatisch Öffnen";
+
+
+
+
+
+
+
+/* Class = "NSMenu"; title = "Devices"; ObjectID = "5Jv-te-DJ7"; */
+"5Jv-te-DJ7.title" = "Geräte";
+
+/* Class = "NSMenuItem"; title = "Devices"; ObjectID = "tjz-sk-Pbb"; */
+"tjz-sk-Pbb.title" = "Geräte";
+
+
+
+
+/* Class = "NSMenuItem"; title = "Import Path"; ObjectID = "JcP-1e-SEi"; */
+"JcP-1e-SEi.title" = "Import Pfad";
+
+/* Class = "NSMenu"; title = "Import Path"; ObjectID = "LMC-Vs-2S2"; */
+"LMC-Vs-2S2.title" = "Import Pfad";
+
+
+
+
+
+
+/* Class = "NSMenuItem"; title = "Change"; ObjectID = "RW6-GS-10a"; */
+"RW6-GS-10a.title" = "Ändern";
+
+
+
+
+
+
+/* Class = "NSMenuItem"; title = "Quit"; ObjectID = "yiu-co-uV8"; */
+"yiu-co-uV8.title" = "Beenden";

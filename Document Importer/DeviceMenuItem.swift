@@ -15,7 +15,7 @@ class DeviveMenuItem: NSMenuItem {
     
     init(_ device: ICDevice) {
         self.device = device
-        super.init(title: device.name ?? "Untitled", action: #selector(clicked), keyEquivalent: "")
+        super.init(title: device.name ?? NSLocalizedString("DefaultDeviceName", comment: ""), action: #selector(clicked), keyEquivalent: "")
         target = self
         state = PersistentDeviceHandler.shared.isDeviceEnabled(device) ? 1 : 0
     }

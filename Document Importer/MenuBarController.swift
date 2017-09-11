@@ -19,9 +19,21 @@ class MenuBarController: NSObject {
         }
     }
     
+    @IBOutlet weak var importKeepOriginalMenuItem: NSMenuItem! {
+        didSet {
+            importKeepOriginalMenuItem.state = SettingsHandler.shared.importKeepOriginalEnabled ? 1 : 0
+        }
+    }
+    
     @IBOutlet weak var convertMenuItem: NSMenuItem! {
         didSet {
             convertMenuItem.state = SettingsHandler.shared.convertingEnabled ? 1 : 0
+        }
+    }
+    
+    @IBOutlet weak var convertKeepOriginalMenuItem: NSMenuItem! {
+        didSet {
+            convertKeepOriginalMenuItem.state = SettingsHandler.shared.convertKeepOriginalEnabled ? 1 : 0
         }
     }
     
@@ -31,6 +43,11 @@ class MenuBarController: NSObject {
         }
     }
     
+    @IBOutlet weak var importPathMenuItem: NSMenuItem! {
+        didSet {
+            updateImportPathMenuItem()
+        }
+    }
     
     @IBOutlet weak var devicesMenu: NSMenu!
     private let statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
@@ -43,8 +60,16 @@ class MenuBarController: NSObject {
         
         refreshDeviceList()
         
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.DocumentImporterDeviceListChanged, object: nil, queue: nil) { [weak self] notification in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.DocumentImporterDeviceListChanged, object: nil, queue: nil) { [weak self] _ in
             self?.refreshDeviceList()
+        }
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.DocumentImporterScannerStateChanged, object: nil, queue: nil) { [weak self] _ in
+            self?.refreshDeviceList()
+        }
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.SettingsHandlerImportPathChanged, object: nil, queue: nil) { [weak self] _ in
+            self?.updateImportPathMenuItem()
         }
     }
     
@@ -54,7 +79,7 @@ class MenuBarController: NSObject {
         let devices = DocumentImporter.shared.devices
         
         if devices.count == 0 {
-            let userMessage = DocumentImporter.shared.scanningEnabled ? "No devices found" : "Scanning Disabled"
+            let userMessage = DocumentImporter.shared.scanningEnabled ? NSLocalizedString("ScanningNoDevicesFound", comment: "") : NSLocalizedString("ScanningScanningDisabled", comment: "")
             devicesMenu.addItem(NSMenuItem(title: userMessage, action: nil, keyEquivalent: ""))
         } else {
             for device in devices {
@@ -63,8 +88,8 @@ class MenuBarController: NSObject {
         }
     }
     
-    @IBAction func pathChangeMenuItemClicked(_ sender: Any) {
-        SettingsHandler.shared.askUserForNewPath()
+    private func updateImportPathMenuItem() {
+        importPathMenuItem.title = SettingsHandler.shared.importURL.path
     }
     
     @IBAction func quitMenuItemClicked(_ sender: Any) {
@@ -80,11 +105,27 @@ class MenuBarController: NSObject {
         SettingsHandler.shared.importingEnabled = sender.toggleState()
     }
     
+    @IBAction func toggleImportKeepOriginal(_ sender: NSMenuItem) {
+        SettingsHandler.shared.importKeepOriginalEnabled = sender.toggleState()
+    }
+    
     @IBAction func toggleConverting(_ sender: NSMenuItem) {
         SettingsHandler.shared.convertingEnabled = sender.toggleState()
     }
     
+    @IBAction func toggleConvertKeepOriginal(_ sender: NSMenuItem) {
+        SettingsHandler.shared.convertKeepOriginalEnabled = sender.toggleState()
+    }
+    
     @IBAction func toggleAutoOpen(_ sender: NSMenuItem) {
         SettingsHandler.shared.autoOpenEnabled = sender.toggleState()
+    }
+    
+    @IBAction func pathChangeMenuItemClicked(_ sender: Any) {
+        SettingsHandler.shared.askUserForNewPath()
+    }
+    
+    @IBAction func openImportPath(_ sender: Any) {
+        NSWorkspace.shared().open(SettingsHandler.shared.importURL)
     }
 }
