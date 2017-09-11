@@ -50,7 +50,7 @@ class MenuBarController: NSObject {
     }
     
     @IBOutlet weak var devicesMenu: NSMenu!
-    private let statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
+    private let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     
     override func awakeFromNib() {
         let icon = NSImage(named: "StatusBarButtonImage")
