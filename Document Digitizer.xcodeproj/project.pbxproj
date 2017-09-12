@@ -17,6 +17,12 @@
 		402A5A751F66B35E0031AFBC /* PersistentObjectMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402A5A741F66B35E0031AFBC /* PersistentObjectMenuItem.swift */; };
 		402A5A791F66C1FA0031AFBC /* SettingsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402A5A781F66C1FA0031AFBC /* SettingsHandler.swift */; };
 		402A5A7C1F66C73B0031AFBC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 402A5A7E1F66C73B0031AFBC /* Localizable.strings */; };
+		40665EA91F67E77300B1928E /* ImportedFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40665EA81F67E77300B1928E /* ImportedFiles.swift */; };
+		40665EAB1F682C7000B1928E /* ImportProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40665EAA1F682C7000B1928E /* ImportProcess.swift */; };
+		40665EAD1F68353100B1928E /* NSNotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40665EAC1F68353100B1928E /* NSNotificationNameExtension.swift */; };
+		40665EAF1F68368400B1928E /* ScannerDeviceMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40665EAE1F68368400B1928E /* ScannerDeviceMenuItem.swift */; };
+		40665EB11F6842CF00B1928E /* ScannerDeviceHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40665EB01F6842CF00B1928E /* ScannerDeviceHandler.swift */; };
+		40665EB31F68494000B1928E /* FunctionalUnitTypeMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40665EB21F68494000B1928E /* FunctionalUnitTypeMenuItem.swift */; };
 		408E7C261F66F757002381C4 /* Tesseract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408E7C251F66F757002381C4 /* Tesseract.swift */; };
 		408E7C281F670641002381C4 /* PersistentStringHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408E7C271F670641002381C4 /* PersistentStringHandler.swift */; };
 		408E7C2A1F6709AC002381C4 /* ICDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408E7C291F6709AC002381C4 /* ICDeviceExtension.swift */; };
@@ -51,6 +57,12 @@
 		402A5A7D1F66C73B0031AFBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		402A5A801F66C7460031AFBC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		403B5E541F66131900CE5E50 /* Document Importer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Document Importer.entitlements"; sourceTree = "<group>"; };
+		40665EA81F67E77300B1928E /* ImportedFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportedFiles.swift; sourceTree = "<group>"; };
+		40665EAA1F682C7000B1928E /* ImportProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportProcess.swift; sourceTree = "<group>"; };
+		40665EAC1F68353100B1928E /* NSNotificationNameExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNotificationNameExtension.swift; sourceTree = "<group>"; };
+		40665EAE1F68368400B1928E /* ScannerDeviceMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerDeviceMenuItem.swift; sourceTree = "<group>"; };
+		40665EB01F6842CF00B1928E /* ScannerDeviceHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerDeviceHandler.swift; sourceTree = "<group>"; };
+		40665EB21F68494000B1928E /* FunctionalUnitTypeMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionalUnitTypeMenuItem.swift; sourceTree = "<group>"; };
 		408E7C251F66F757002381C4 /* Tesseract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tesseract.swift; sourceTree = "<group>"; };
 		408E7C271F670641002381C4 /* PersistentStringHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStringHandler.swift; sourceTree = "<group>"; };
 		408E7C291F6709AC002381C4 /* ICDeviceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICDeviceExtension.swift; sourceTree = "<group>"; };
@@ -96,21 +108,12 @@
 		400A5C9B1F65FB3B00224F76 /* Document Importer */ = {
 			isa = PBXGroup;
 			children = (
-				403B5E541F66131900CE5E50 /* Document Importer.entitlements */,
-				400A5C9C1F65FB3B00224F76 /* AppDelegate.swift */,
-				400A5CB91F65FB5700224F76 /* DocumentImporter.swift */,
-				408E7C271F670641002381C4 /* PersistentStringHandler.swift */,
-				408E7C251F66F757002381C4 /* Tesseract.swift */,
-				402A5A781F66C1FA0031AFBC /* SettingsHandler.swift */,
-				402A5A701F66A4110031AFBC /* MenuBarController.swift */,
-				402A5A721F66A81F0031AFBC /* NSMenuItemExtension.swift */,
-				408E7C291F6709AC002381C4 /* ICDeviceExtension.swift */,
-				408E7C2B1F671FBC002381C4 /* TesseractLanguage.swift */,
-				402A5A741F66B35E0031AFBC /* PersistentObjectMenuItem.swift */,
-				402A5A7E1F66C73B0031AFBC /* Localizable.strings */,
-				400A5CA01F65FB3B00224F76 /* Assets.xcassets */,
+				40665EB41F688A1E00B1928E /* Supporting Files */,
+				40665EB51F688A3D00B1928E /* Model */,
+				40665EB61F688A5E00B1928E /* View */,
+				40665EB71F688A7100B1928E /* Controller */,
+				40665EB81F688A7B00B1928E /* Helper */,
 				400A5CA21F65FB3B00224F76 /* Main.storyboard */,
-				400A5CA51F65FB3B00224F76 /* Info.plist */,
 			);
 			path = "Document Importer";
 			sourceTree = "<group>";
@@ -122,6 +125,69 @@
 				400A5CB01F65FB3B00224F76 /* Info.plist */,
 			);
 			path = "Document ImporterTests";
+			sourceTree = "<group>";
+		};
+		40665EB41F688A1E00B1928E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				403B5E541F66131900CE5E50 /* Document Importer.entitlements */,
+				400A5C9C1F65FB3B00224F76 /* AppDelegate.swift */,
+				402A5A7E1F66C73B0031AFBC /* Localizable.strings */,
+				400A5CA01F65FB3B00224F76 /* Assets.xcassets */,
+				400A5CA51F65FB3B00224F76 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		40665EB51F688A3D00B1928E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				40665EB91F688A9000B1928E /* Settings */,
+				400A5CB91F65FB5700224F76 /* DocumentImporter.swift */,
+				408E7C251F66F757002381C4 /* Tesseract.swift */,
+				40665EB01F6842CF00B1928E /* ScannerDeviceHandler.swift */,
+				408E7C2B1F671FBC002381C4 /* TesseractLanguage.swift */,
+				40665EA81F67E77300B1928E /* ImportedFiles.swift */,
+				40665EAA1F682C7000B1928E /* ImportProcess.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		40665EB61F688A5E00B1928E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				40665EAE1F68368400B1928E /* ScannerDeviceMenuItem.swift */,
+				40665EB21F68494000B1928E /* FunctionalUnitTypeMenuItem.swift */,
+				402A5A741F66B35E0031AFBC /* PersistentObjectMenuItem.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		40665EB71F688A7100B1928E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				402A5A701F66A4110031AFBC /* MenuBarController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		40665EB81F688A7B00B1928E /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				402A5A721F66A81F0031AFBC /* NSMenuItemExtension.swift */,
+				40665EAC1F68353100B1928E /* NSNotificationNameExtension.swift */,
+				408E7C291F6709AC002381C4 /* ICDeviceExtension.swift */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
+		40665EB91F688A9000B1928E /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				408E7C271F670641002381C4 /* PersistentStringHandler.swift */,
+				402A5A781F66C1FA0031AFBC /* SettingsHandler.swift */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,7 +256,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 400A5C941F65FB3B00224F76 /* Build configuration list for PBXProject "Document Importer" */;
+			buildConfigurationList = 400A5C941F65FB3B00224F76 /* Build configuration list for PBXProject "Document Digitizer" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -238,13 +304,19 @@
 				408E7C2C1F671FBC002381C4 /* TesseractLanguage.swift in Sources */,
 				408E7C261F66F757002381C4 /* Tesseract.swift in Sources */,
 				400A5CBA1F65FB5700224F76 /* DocumentImporter.swift in Sources */,
+				40665EAD1F68353100B1928E /* NSNotificationNameExtension.swift in Sources */,
+				40665EAF1F68368400B1928E /* ScannerDeviceMenuItem.swift in Sources */,
 				402A5A751F66B35E0031AFBC /* PersistentObjectMenuItem.swift in Sources */,
 				402A5A711F66A4110031AFBC /* MenuBarController.swift in Sources */,
 				402A5A731F66A81F0031AFBC /* NSMenuItemExtension.swift in Sources */,
+				40665EB31F68494000B1928E /* FunctionalUnitTypeMenuItem.swift in Sources */,
+				40665EA91F67E77300B1928E /* ImportedFiles.swift in Sources */,
 				400A5C9D1F65FB3B00224F76 /* AppDelegate.swift in Sources */,
+				40665EAB1F682C7000B1928E /* ImportProcess.swift in Sources */,
 				408E7C281F670641002381C4 /* PersistentStringHandler.swift in Sources */,
 				402A5A791F66C1FA0031AFBC /* SettingsHandler.swift in Sources */,
 				408E7C2A1F6709AC002381C4 /* ICDeviceExtension.swift in Sources */,
+				40665EB11F6842CF00B1928E /* ScannerDeviceHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,7 +517,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		400A5C941F65FB3B00224F76 /* Build configuration list for PBXProject "Document Importer" */ = {
+		400A5C941F65FB3B00224F76 /* Build configuration list for PBXProject "Document Digitizer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				400A5CB11F65FB3B00224F76 /* Debug */,

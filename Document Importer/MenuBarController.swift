@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import ImageCaptureCore
 
 class MenuBarController: NSObject {
 
@@ -51,6 +52,12 @@ class MenuBarController: NSObject {
     
     @IBOutlet weak var languagesMenu: NSMenu!
     @IBOutlet weak var devicesMenu: NSMenu!
+    @IBOutlet weak var pdfDPIMenu: NSMenu! {
+        didSet {
+            updatePDFDPIMenu()
+        }
+    }
+    
     private let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     
     override func awakeFromNib() {
@@ -80,6 +87,10 @@ class MenuBarController: NSObject {
         NotificationCenter.default.addObserver(forName: NSNotification.Name.TesseractLanguageSelectionChanged, object: nil, queue: nil) { [weak self] _ in
             self?.refreshLanguagesList()
         }
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.SettingsHandlerPDFDPIChanged, object: nil, queue: nil) { [weak self] _ in
+            self?.updatePDFDPIMenu()
+        }
     }
     
     private func refreshDeviceList() {
@@ -92,8 +103,14 @@ class MenuBarController: NSObject {
             devicesMenu.addItem(NSMenuItem(title: userMessage, action: nil, keyEquivalent: ""))
         } else {
             for device in devices {
-                let item = PersistentObjectMenuItem(device, persistentObjectHandler: SettingsHandler.persistentDeviceHandler)
-                devicesMenu.addItem(item)
+                if let scanner = device as? ICScannerDevice {
+                    let item = ScannerDeviceMenuItem()
+                    item.delegate = ScannerDeviceHandler(scanner: scanner, menuItem: item)
+                    devicesMenu.addItem(item)
+                } else {
+                    let item = PersistentObjectMenuItem(device, persistentObjectHandler: SettingsHandler.persistentDeviceHandler)
+                    devicesMenu.addItem(item)
+                }
             }
         }
     }
@@ -118,6 +135,12 @@ class MenuBarController: NSObject {
         for language in languages {
             let item = PersistentObjectMenuItem(language, persistentObjectHandler: languageHandler)
             languagesMenu.addItem(item)
+        }
+    }
+    
+    private func updatePDFDPIMenu() {
+        for item in pdfDPIMenu.items {
+            item.state = Int(item.title) == SettingsHandler.shared.pdfDPI ? 1 : 0
         }
     }
     
@@ -161,4 +184,9 @@ class MenuBarController: NSObject {
     @IBAction func openImportPath(_ sender: Any) {
         NSWorkspace.shared().open(SettingsHandler.shared.importURL)
     }
+    
+    @IBAction func pdfDPIMenuItemClicked(_ sender: NSMenuItem) {
+        SettingsHandler.shared.pdfDPI = Int(sender.title)!
+    }
+    
 }

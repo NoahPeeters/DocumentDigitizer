@@ -13,7 +13,7 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-
+        NSDocumentController.shared().clearRecentDocuments(nil)
         NSUserNotificationCenter.default.delegate = self
         DocumentImporter.shared.startScanning()
         
@@ -26,7 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     }
     
     func userNotificationCenter(_ center: NSUserNotificationCenter, didActivate notification: NSUserNotification) {
-        guard let urlString = notification.identifier, let url = URL(string: urlString) else {
+        guard let urlString = notification.userInfo?["url"] as? String, let url = URL(string: urlString) else {
             return
         }
         
@@ -34,3 +34,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     }
 }
 
+
+extension NSUserNotificationCenter {
+    func removeDeliveredNotification(withIdentifier identifier: String) {
+        let notification = NSUserNotification()
+        notification.identifier = identifier
+        removeDeliveredNotification(notification)
+    }
+}

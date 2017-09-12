@@ -11,7 +11,7 @@ import ImageCaptureCore
 
 class PersistentObjectMenuItem<T: StringIdentifiable & CustomUserInterfaceString>: NSMenuItem {
     
-    private var object: T?
+    private var object: T
     private var persistentObjectHandler: PersistentObjectHandler<T>
     
     init(_ object: T, persistentObjectHandler: PersistentObjectHandler<T>) {
@@ -27,14 +27,6 @@ class PersistentObjectMenuItem<T: StringIdentifiable & CustomUserInterfaceString
     }
     
     func clicked() {
-        guard let object = object else {
-            return
-        }
-        
         persistentObjectHandler.update(object, enabled: toggleState())
-    }
-    
-    deinit {
-        object = nil
     }
 }

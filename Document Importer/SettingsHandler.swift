@@ -20,6 +20,7 @@ class SettingsHandler: NSObject {
     private static let convertKeepOriginalKey = "convertKeepOriginal"
     private static let autoOpenKey = "autoOpenEnabled"
     private static let importURLKey = "importURL"
+    private static let pdfDPIKey = "pdfDPI"
     
     private let userDefaults = UserDefaults.standard
     
@@ -67,6 +68,13 @@ class SettingsHandler: NSObject {
         }
     }
     
+    var pdfDPI: Int {
+        didSet {
+            userDefaults.set(pdfDPI, forKey: SettingsHandler.pdfDPIKey)
+            NotificationCenter.default.post(name: NSNotification.Name.SettingsHandlerPDFDPIChanged, object: nil)
+        }
+    }
+    
     var importURL: URL {
         didSet {
             userDefaults.set(importURL, forKey: SettingsHandler.importURLKey)
@@ -90,6 +98,8 @@ class SettingsHandler: NSObject {
         convertingEnabled = userDefaults.bool(forKey: SettingsHandler.convertKey)
         convertKeepOriginalEnabled = userDefaults.bool(forKey: SettingsHandler.convertKeepOriginalKey)
         autoOpenEnabled = userDefaults.bool(forKey: SettingsHandler.autoOpenKey)
+        let loadedpdfDPI = userDefaults.integer(forKey: SettingsHandler.pdfDPIKey)
+        pdfDPI = loadedpdfDPI == 0 ? 150 : loadedpdfDPI
         importURL = userDefaults.url(forKey: SettingsHandler.importURLKey) ?? SettingsHandler.defaultPath
     }
     

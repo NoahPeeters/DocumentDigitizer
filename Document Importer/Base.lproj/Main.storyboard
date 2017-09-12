@@ -666,6 +666,7 @@
                         <outlet property="importPathMenuItem" destination="b3h-RY-UX0" id="K0W-2M-JsC"/>
                         <outlet property="importingMenuItem" destination="84X-i2-mfh" id="GZc-DB-4O7"/>
                         <outlet property="languagesMenu" destination="gth-jS-2R5" id="AJW-ht-jLJ"/>
+                        <outlet property="pdfDPIMenu" destination="wCz-Vg-qTg" id="5jO-a6-Wyl"/>
                         <outlet property="statusMenu" destination="IE7-lB-QER" id="WtL-uE-LK5"/>
                     </connections>
                 </customObject>
@@ -681,12 +682,68 @@
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <menu key="submenu" title="Importing" id="ecW-4i-ncM">
                                 <items>
-                                    <menuItem title="Importing" id="84X-i2-mfh">
+                                    <menuItem title="Auto Importing" id="84X-i2-mfh">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
                                             <action selector="toggleImporting:" target="MdP-mr-Ksk" id="wzQ-y6-kOF"/>
                                         </connections>
                                     </menuItem>
+                                    <menuItem title="Devices" id="tjz-sk-Pbb">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menu key="submenu" title="Devices" id="5Jv-te-DJ7"/>
+                                    </menuItem>
+                                    <menuItem title="Import Path" id="JcP-1e-SEi">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menu key="submenu" title="Import Path" id="LMC-Vs-2S2">
+                                            <items>
+                                                <menuItem title="Change" id="RW6-GS-10a">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <connections>
+                                                        <action selector="pathChangeMenuItemClicked:" target="MdP-mr-Ksk" id="cNw-aa-CqV"/>
+                                                    </connections>
+                                                </menuItem>
+                                                <menuItem title="/tmp" id="b3h-RY-UX0">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <connections>
+                                                        <action selector="openImportPath:" target="MdP-mr-Ksk" id="Nsq-jD-luK"/>
+                                                    </connections>
+                                                </menuItem>
+                                            </items>
+                                        </menu>
+                                    </menuItem>
+                                    <menuItem isSeparatorItem="YES" id="HSK-Nm-PAs"/>
+                                    <menuItem title="PDF DPI" id="vs4-dr-AzU">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menu key="submenu" title="PDF DPI" id="wCz-Vg-qTg">
+                                            <items>
+                                                <menuItem title="75" id="i8x-Mj-ME5">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <connections>
+                                                        <action selector="pdfDPIMenuItemClicked:" target="MdP-mr-Ksk" id="T4u-dA-C4W"/>
+                                                    </connections>
+                                                </menuItem>
+                                                <menuItem title="150" id="Fre-vy-wPB">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <connections>
+                                                        <action selector="pdfDPIMenuItemClicked:" target="MdP-mr-Ksk" id="KbQ-P2-lYw"/>
+                                                    </connections>
+                                                </menuItem>
+                                                <menuItem title="300" id="gre-XF-s63">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <connections>
+                                                        <action selector="pdfDPIMenuItemClicked:" target="MdP-mr-Ksk" id="naq-vU-vQO"/>
+                                                    </connections>
+                                                </menuItem>
+                                                <menuItem title="600" id="YeH-eO-Gv3">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <connections>
+                                                        <action selector="pdfDPIMenuItemClicked:" target="MdP-mr-Ksk" id="bGt-25-IKo"/>
+                                                    </connections>
+                                                </menuItem>
+                                            </items>
+                                        </menu>
+                                    </menuItem>
+                                    <menuItem isSeparatorItem="YES" id="ndS-iP-eYa"/>
                                     <menuItem title="Keep Original" id="n0a-yA-zLT">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
@@ -706,6 +763,11 @@
                                             <action selector="toggleConverting:" target="MdP-mr-Ksk" id="Fbc-HT-Ir9"/>
                                         </connections>
                                     </menuItem>
+                                    <menuItem title="Languages" id="FFP-VM-eV5">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menu key="submenu" title="Languages" id="gth-jS-2R5"/>
+                                    </menuItem>
+                                    <menuItem isSeparatorItem="YES" id="gHj-0X-pms"/>
                                     <menuItem title="Keep Original" id="SV6-ng-8j2">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
@@ -721,34 +783,7 @@
                                 <action selector="toggleAutoOpen:" target="MdP-mr-Ksk" id="jdA-wY-vFu"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Languages" id="FFP-VM-eV5">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <menu key="submenu" title="Languages" id="gth-jS-2R5"/>
-                        </menuItem>
-                        <menuItem title="Devices" id="tjz-sk-Pbb">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <menu key="submenu" title="Devices" id="5Jv-te-DJ7"/>
-                        </menuItem>
                         <menuItem isSeparatorItem="YES" id="zxF-4H-UTg"/>
-                        <menuItem title="Import Path" id="JcP-1e-SEi">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <menu key="submenu" title="Import Path" id="LMC-Vs-2S2">
-                                <items>
-                                    <menuItem title="Change" id="RW6-GS-10a">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                        <connections>
-                                            <action selector="pathChangeMenuItemClicked:" target="MdP-mr-Ksk" id="cNw-aa-CqV"/>
-                                        </connections>
-                                    </menuItem>
-                                    <menuItem title="/tmp" id="b3h-RY-UX0">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                        <connections>
-                                            <action selector="openImportPath:" target="MdP-mr-Ksk" id="Nsq-jD-luK"/>
-                                        </connections>
-                                    </menuItem>
-                                </items>
-                            </menu>
-                        </menuItem>
                         <menuItem title="Quit" id="yiu-co-uV8">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>

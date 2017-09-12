@@ -17,7 +17,7 @@
                BlueprintIdentifier = "400A5C981F65FB3B00224F76"
                BuildableName = "Document Importer.app"
                BlueprintName = "Document Importer"
-               ReferencedContainer = "container:Document Importer.xcodeproj">
+               ReferencedContainer = "container:Document Digitizer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "400A5CA91F65FB3B00224F76"
                BuildableName = "Document ImporterTests.xctest"
                BlueprintName = "Document ImporterTests"
-               ReferencedContainer = "container:Document Importer.xcodeproj">
+               ReferencedContainer = "container:Document Digitizer.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -45,7 +45,7 @@
             BlueprintIdentifier = "400A5C981F65FB3B00224F76"
             BuildableName = "Document Importer.app"
             BlueprintName = "Document Importer"
-            ReferencedContainer = "container:Document Importer.xcodeproj">
+            ReferencedContainer = "container:Document Digitizer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -68,7 +68,7 @@
             BlueprintIdentifier = "400A5C981F65FB3B00224F76"
             BuildableName = "Document Importer.app"
             BlueprintName = "Document Importer"
-            ReferencedContainer = "container:Document Importer.xcodeproj">
+            ReferencedContainer = "container:Document Digitizer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -87,7 +87,7 @@
             BlueprintIdentifier = "400A5C981F65FB3B00224F76"
             BuildableName = "Document Importer.app"
             BlueprintName = "Document Importer"
-            ReferencedContainer = "container:Document Importer.xcodeproj">
+            ReferencedContainer = "container:Document Digitizer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

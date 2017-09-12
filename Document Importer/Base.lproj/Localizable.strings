@@ -6,9 +6,11 @@
   Copyright © 2017 Noah Peeters. All rights reserved.
 */
 
-"NotificationDownloadCompletedTitle"="Download completed";
 "NotificationDownloadCompletedErrorTitle"="Error while downloading";
-"NotificationDownloadCompletedOpenButton"="Open";
+"NotificationConvertStartedTitle"="Converting started";
+"NotificationImageExtractionStartedStartedTitle"="Image extraction started";
+"NotificationImportCompletedTitle"="Import completed";
+
 
 "DefaultDeviceName"="Unnamed";
 "ScanningNoDevicesFound"="No devices found";

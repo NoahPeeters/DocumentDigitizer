@@ -40,8 +40,13 @@ class DocumentImporter: NSObject {
         
         browser.browsedDeviceTypeMask = ICDeviceTypeMask(rawValue:
             ICDeviceTypeMask.camera.rawValue |
+            ICDeviceTypeMask.scanner.rawValue |
             ICDeviceLocationTypeMask.local.rawValue |
-            ICDeviceLocationTypeMask.bluetooth.rawValue
+            ICDeviceLocationTypeMask.bluetooth.rawValue |
+            ICDeviceLocationTypeMask.remote.rawValue |
+            ICDeviceLocationTypeMask.bonjour.rawValue |
+            ICDeviceLocationTypeMask.remote.rawValue |
+            ICDeviceLocationTypeMask.shared.rawValue
         )!
     }
     
@@ -63,35 +68,93 @@ class DocumentImporter: NSObject {
         file.device.requestDownloadFile(file, options: options, downloadDelegate: self, didDownloadSelector: #selector(didDownloadFile), contextInfo: nil)
     }
     
-    fileprivate func convertFile(_ file: ICCameraFile, withURL inputURL: URL) {
+    func handleImageFile(at url: URL, process: ImportProcess = ImportProcess(), completionHandler: ((URL) -> Void)? = nil) {
+        if SettingsHandler.shared.convertingEnabled {
+            convertFile(withURL: url, process: process, completionHandler: completionHandler)
+        } else {
+            importCompleted(withURL: url, process: process, completionHandler: completionHandler)
+        }
+    }
+    
+    func handlePDFFile(at url: URL, process importProcess: ImportProcess = ImportProcess(), completionHandler: ((URL) -> Void)? = nil) {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            let urlWithoutPathExtension = url.deletingPathExtension()
+            
+            let tifURL = URL.makeTemporaryDirectory().appendingPathComponent(NSUUID().uuidString).appendingPathExtension("tif")
+            let originalFileURL: URL
+            
+            if SettingsHandler.shared.convertKeepOriginalEnabled {
+                originalFileURL = urlWithoutPathExtension.deletingLastPathComponent().appendingPathComponent(urlWithoutPathExtension.lastPathComponent + "_Original").appendingPathExtension("pdf")
+                
+                guard (try? FileManager.default.moveItem(at: url, to: originalFileURL)) != nil else {
+                    return
+                }
+            } else {
+                var newNSURL: NSURL? = nil
+                
+                guard (try? FileManager.default.trashItem(at: url, resultingItemURL: &newNSURL)) != nil,
+                    let newURL = newNSURL?.absoluteURL else {
+                        return
+                }
+                originalFileURL = newURL
+            }
+            
+            importProcess.showNotification(localizedTitle: "NotificationImageExtractionStartedStartedTitle", text: url.lastPathComponent)
+            
+            let process = Process.withEnvoirement()
+            process.launchPath = "/usr/local/bin/convert"
+            
+            process.arguments = [
+                "-density",
+                String(describing: SettingsHandler.shared.pdfDPI),
+                originalFileURL.path,
+                tifURL.path
+            ]
+            
+            process.launch()
+            process.waitUntilExit()
+            
+            self?.convertFile(withURL: tifURL, outputURL: url, process: importProcess, completionHandler: completionHandler)
+        }
+    }
+    
+    func convertFile(withURL inputURL: URL, outputURL: URL? = nil, keepOriginal: Bool = SettingsHandler.shared.convertKeepOriginalEnabled, process: ImportProcess = ImportProcess(), completionHandler: ((URL) -> Void)? = nil) {
         
-        let outputURL = inputURL.deletingPathExtension().appendingPathExtension("pdf")
+        let outputURL = outputURL ?? inputURL.deletingPathExtension().appendingPathExtension("pdf")
         
         let languages = SettingsHandler.shared.selectedLanguages
         
+        process.showNotification(localizedTitle: "NotificationConvertStartedTitle", text: outputURL.lastPathComponent)
+        
         Tesseract.shared.run(inputURL: inputURL, outputURL: outputURL, languages: languages) { [weak self] in
-            self?.importCompleted(ofFile: file, withURL: outputURL)
-            
-            if !SettingsHandler.shared.convertKeepOriginalEnabled,
+            if !keepOriginal,
                 FileManager.default.fileExists(atPath: outputURL.path) {
                 try? FileManager.default.trashItem(at: inputURL, resultingItemURL: nil)
             }
+            self?.importCompleted(withURL: outputURL, process: process, completionHandler: completionHandler)
         }
         
     }
     
-    fileprivate func importCompleted(ofFile file: ICCameraFile, withURL url: URL) {
+    fileprivate func importCompleted(withURL url: URL, process: ImportProcess, completionHandler: ((URL) -> Void)? = nil) {
         if SettingsHandler.shared.autoOpenEnabled {
             NSWorkspace.shared().open(url)
         }
 
-        let notification = NSUserNotification()
-        notification.title = NSLocalizedString("NotificationDownloadCompletedTitle", comment: "")
-        notification.informativeText = url.lastPathComponent
-        notification.identifier = url.absoluteString
-        notification.hasActionButton = true
-        notification.actionButtonTitle = NSLocalizedString("NotificationDownloadCompletedOpenButton", comment: "")
-        NSUserNotificationCenter.default.scheduleNotification(notification)
+        DispatchQueue.main.async {
+            process.showNotification(
+                localizedTitle: "NotificationImportCompletedTitle",
+                text: url.lastPathComponent,
+                userInfo: [
+                    "url": url.absoluteString
+                ]
+            )
+            
+            Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
+                process.removeDeliverdNotifications()
+            }
+            completionHandler?(url)
+        }
     }
     
     func startScanning() {
@@ -108,12 +171,16 @@ class DocumentImporter: NSObject {
 extension DocumentImporter: ICDeviceBrowserDelegate {
     func deviceBrowser(_ browser: ICDeviceBrowser, didAdd device: ICDevice, moreComing: Bool) {
         device.delegate = self
-        device.requestOpenSession()
+        
+        if !(device is ICScannerDevice) {
+            device.requestOpenSession()
+        }
         
         NotificationCenter.default.post(name: NSNotification.Name.DocumentImporterDeviceListChanged, object: nil)
     }
     
     func deviceBrowser(_ browser: ICDeviceBrowser, didRemove device: ICDevice, moreGoing moreComing: Bool) {
+        device.requestCloseSession()
         NotificationCenter.default.post(name: NSNotification.Name.DocumentImporterDeviceListChanged, object: nil)
     }
 }
@@ -138,25 +205,14 @@ extension DocumentImporter: ICCameraDeviceDownloadDelegate {
     func didDownloadFile(_ file: ICCameraFile, error: Error?, options: [String : Any]? = nil, contextInfo: UnsafeMutableRawPointer?) {
         if let error = error {
             let notification = NSUserNotification()
-            notification.identifier = file.name
+            notification.identifier = NSUUID().uuidString
             notification.title = NSLocalizedString("NotificationDownloadCompletedErrorTitle", comment: "")
             notification.informativeText = error.localizedDescription
             NSUserNotificationCenter.default.scheduleNotification(notification)
         } else {
             let url = SettingsHandler.shared.importURL.appendingPathComponent(file.name, isDirectory: false)
-            if SettingsHandler.shared.convertingEnabled {
-                convertFile(file, withURL: url)
-            } else {
-                importCompleted(ofFile: file, withURL: url)
-            }
+            handleImageFile(at: url)
         }
     }
 }
 
-extension NSNotification.Name {
-    static let DocumentImporterDeviceListChanged = NSNotification.Name("DocumentImporterDeviceListChanged")
-    static let DocumentImporterScannerStateChanged = NSNotification.Name("DocumentImporterScannerStateChanged")
-    static let SettingsHandlerImportPathChanged = NSNotification.Name("SettingsHandlerImportPathChanged")
-    static let TesseractLanguageListChanged = NSNotification.Name("TesseractLanguageListChanged")
-    static let TesseractLanguageSelectionChanged = NSNotification.Name("TesseractLanguageSelectionChanged")
-}
