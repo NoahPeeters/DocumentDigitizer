@@ -1,15 +1,15 @@
 //
-//  Document_ImporterTests.swift
-//  Document ImporterTests
+//  Document_DigitizerTests.swift
+//  Document DigitizerTests
 //
 //  Created by Noah Peeters on 11.09.17.
 //  Copyright © 2017 Noah Peeters. All rights reserved.
 //
 
 import XCTest
-@testable import Document_Importer
+@testable import Document_Digitizer
 
-class Document_ImporterTests: XCTestCase {
+class Document_DigitizerTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

@@ -1,6 +1,6 @@
 //
 //  SettingsHandler.swift
-//  Document Importer
+//  Document Digitizer
 //
 //  Created by Noah Peeters on 11.09.17.
 //  Copyright © 2017 Noah Peeters. All rights reserved.
@@ -27,9 +27,9 @@ class SettingsHandler: NSObject {
     /// Enable and disable scanning
     var scanningEnabled: Bool {
         get {
-            return DocumentImporter.shared.scanningEnabled
+            return DocumentDigitizer.shared.scanningEnabled
         } set {
-            DocumentImporter.shared.scanningEnabled = newValue
+            DocumentDigitizer.shared.scanningEnabled = newValue
         }
     }
     

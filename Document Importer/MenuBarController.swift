@@ -1,6 +1,6 @@
 //
 //  MenuBarController.swift
-//  Document Importer
+//  Document Digitizer
 //
 //  Created by Noah Peeters on 11.09.17.
 //  Copyright © 2017 Noah Peeters. All rights reserved.
@@ -68,11 +68,11 @@ class MenuBarController: NSObject {
         
         refreshDeviceList()
         
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.DocumentImporterDeviceListChanged, object: nil, queue: nil) { [weak self] _ in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.DocumentDigitizerDeviceListChanged, object: nil, queue: nil) { [weak self] _ in
             self?.refreshDeviceList()
         }
         
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.DocumentImporterScannerStateChanged, object: nil, queue: nil) { [weak self] _ in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.DocumentDigitizerScannerStateChanged, object: nil, queue: nil) { [weak self] _ in
             self?.refreshDeviceList()
         }
         
@@ -96,10 +96,10 @@ class MenuBarController: NSObject {
     private func refreshDeviceList() {
         devicesMenu.removeAllItems()
         
-        let devices = DocumentImporter.shared.devices
+        let devices = DocumentDigitizer.shared.devices
         
         if devices.count == 0 {
-            let userMessage = DocumentImporter.shared.scanningEnabled ? NSLocalizedString("ScanningNoDevicesFound", comment: "") : NSLocalizedString("ScanningScanningDisabled", comment: "")
+            let userMessage = DocumentDigitizer.shared.scanningEnabled ? NSLocalizedString("ScanningNoDevicesFound", comment: "") : NSLocalizedString("ScanningScanningDisabled", comment: "")
             devicesMenu.addItem(NSMenuItem(title: userMessage, action: nil, keyEquivalent: ""))
         } else {
             for device in devices {
@@ -153,7 +153,7 @@ class MenuBarController: NSObject {
     }
     
     @IBAction func toggleScanning(_ sender: NSMenuItem) {
-        DocumentImporter.shared.scanningEnabled = sender.toggleState()
+        DocumentDigitizer.shared.scanningEnabled = sender.toggleState()
         refreshDeviceList()
     }
     

@@ -1,6 +1,6 @@
 //
 //  ScannerDeviceHandler.swift
-//  Document Importer
+//  Document Digitizer
 //
 //  Created by Noah Peeters on 12.09.17.
 //  Copyright © 2017 Noah Peeters. All rights reserved.
@@ -11,7 +11,7 @@ import ImageCaptureCore
 class ScannerDeviceHandler: NSObject {
     
     let scanner: ICScannerDevice
-    let process = ImportProcess()
+    let documentDigitizeProcess = DocumentDigitizeProcess()
     
     var progressUpdateTimer: Timer?
     
@@ -48,7 +48,7 @@ extension ScannerDeviceHandler: ICScannerDeviceDelegate {
     }
     
     func scannerDevice(_ scanner: ICScannerDevice, didScanTo url: URL) {
-        DocumentImporter.shared.handleImageFile(at: url, process: process)
+        DocumentDigitizer.shared.handleImageFile(at: url, documentDigitizeProcess: documentDigitizeProcess)
     }
     
     func scannerDevice(_ scanner: ICScannerDevice, didSelect functionalUnit: ICScannerFunctionalUnit, error: Error?) {
@@ -104,11 +104,11 @@ extension ScannerDeviceHandler: ScannerDeviceMenuItemDelegate {
         fu.bitDepth = .depth8Bits
         fu.pixelDataType = .RGB
         
-        process.showNotification(title: scanner.name ?? "Untitled Scanner", text: "Start Scanning")
+        documentDigitizeProcess.showNotification(title: scanner.name ?? "Untitled Scanner", text: "Start Scanning")
         
         
         progressUpdateTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
-            self?.process.showNotification(
+            self?.documentDigitizeProcess.showNotification(
                 title: self?.scanner.name ?? "Untitled Scanner",
                 text: "Scanning Progress: \(round(fu.scanProgressPercentDone))%"
             )

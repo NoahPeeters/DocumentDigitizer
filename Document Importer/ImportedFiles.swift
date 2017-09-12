@@ -1,6 +1,6 @@
 //
 //  ImportedFiles.swift
-//  Document Importer
+//  Document Digitizer
 //
 //  Created by Noah Peeters on 12.09.17.
 //  Copyright © 2017 Noah Peeters. All rights reserved.
@@ -12,7 +12,7 @@ import Quartz
 class ImportedImage: NSDocument {
     init(contentsOf url: URL, ofType typeName: String) throws {
         super.init()
-        DocumentImporter.shared.convertFile(withURL: url) { [weak self] _ in
+        DocumentDigitizer.shared.convertFile(withURL: url) { [weak self] _ in
             self?.close()
         }
     }
@@ -23,7 +23,7 @@ class ImportedPDF: NSDocument {
     init(contentsOf url: URL, ofType typeName: String) throws {
         super.init()
         
-        DocumentImporter.shared.handlePDFFile(at: url) { _ in
+        DocumentDigitizer.shared.handlePDFFile(at: url) { _ in
             self.close()
         }
     }

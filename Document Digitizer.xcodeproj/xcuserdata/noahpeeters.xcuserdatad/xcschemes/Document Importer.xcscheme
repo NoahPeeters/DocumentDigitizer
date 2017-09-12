@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "400A5C981F65FB3B00224F76"
-               BuildableName = "Document Importer.app"
-               BlueprintName = "Document Importer"
+               BuildableName = "Document Digitizer.app"
+               BlueprintName = "Document Digitizer"
                ReferencedContainer = "container:Document Digitizer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "400A5CA91F65FB3B00224F76"
-               BuildableName = "Document ImporterTests.xctest"
-               BlueprintName = "Document ImporterTests"
+               BuildableName = "Document DigitizerTests.xctest"
+               BlueprintName = "Document DigitizerTests"
                ReferencedContainer = "container:Document Digitizer.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -43,8 +43,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "400A5C981F65FB3B00224F76"
-            BuildableName = "Document Importer.app"
-            BlueprintName = "Document Importer"
+            BuildableName = "Document Digitizer.app"
+            BlueprintName = "Document Digitizer"
             ReferencedContainer = "container:Document Digitizer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -66,8 +66,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "400A5C981F65FB3B00224F76"
-            BuildableName = "Document Importer.app"
-            BlueprintName = "Document Importer"
+            BuildableName = "Document Digitizer.app"
+            BlueprintName = "Document Digitizer"
             ReferencedContainer = "container:Document Digitizer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -85,8 +85,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "400A5C981F65FB3B00224F76"
-            BuildableName = "Document Importer.app"
-            BlueprintName = "Document Importer"
+            BuildableName = "Document Digitizer.app"
+            BlueprintName = "Document Digitizer"
             ReferencedContainer = "container:Document Digitizer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
