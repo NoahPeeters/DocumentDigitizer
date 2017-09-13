@@ -115,8 +115,7 @@
 				40665EB81F688A7B00B1928E /* Helper */,
 				400A5CA21F65FB3B00224F76 /* Main.storyboard */,
 			);
-			name = "Document Digitizer";
-			path = "Document Importer";
+			path = "Document Digitizer";
 			sourceTree = "<group>";
 		};
 		400A5CAD1F65FB3B00224F76 /* Document DigitizerTests */ = {
@@ -462,7 +461,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 52A793VRAY;
-				INFOPLIST_FILE = "Document Importer/Info.plist";
+				INFOPLIST_FILE = "Document Digitizer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = to.us.peeters.DocumentDigitizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -476,7 +475,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 52A793VRAY;
-				INFOPLIST_FILE = "Document Importer/Info.plist";
+				INFOPLIST_FILE = "Document Digitizer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = to.us.peeters.DocumentDigitizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
