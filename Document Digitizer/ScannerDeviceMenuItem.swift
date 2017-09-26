@@ -58,13 +58,13 @@ class ScannerDeviceMenuItem: NSMenuItem {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func toggleConnection() {
+    @objc func toggleConnection() {
         delegate?.toggleConnection()
         connectMenuItem.isEnabled = false
         connectMenuItem.title = "Connecting..."
     }
     
-    func startScan() {
+    @objc func startScan() {
         delegate?.startScan()
     }
     
@@ -97,7 +97,7 @@ class ScannerDeviceMenuItem: NSMenuItem {
         
         for functionalUnitType in availableFunctionalUnitTypes {
             let item = FunctionalUnitTypeMenuItem(functionalUnitType: functionalUnitType, scannerDeviceMenuItemDelegate: delegate)
-            item.state = functionalUnitType == delegate.selectedFunctionalUnitType ? 1 : 0
+            item.state = NSControl.StateValue(rawValue: functionalUnitType == delegate.selectedFunctionalUnitType ? 1 : 0)
             functionalUnitTypeMenu.addItem(item)
         }
     }

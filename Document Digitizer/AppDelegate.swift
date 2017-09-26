@@ -15,7 +15,7 @@ var disabledNotifications: Set<String> = []
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        NSDocumentController.shared().clearRecentDocuments(nil)
+        NSDocumentController.shared.clearRecentDocuments(nil)
         NSUserNotificationCenter.default.delegate = self
         DocumentDigitizer.shared.startScanning()
         
@@ -36,7 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             return
         }
         
-        NSWorkspace.shared().open(url)
+        NSWorkspace.shared.open(url)
     }
 }
 

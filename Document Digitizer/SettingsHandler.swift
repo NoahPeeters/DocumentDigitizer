@@ -113,7 +113,7 @@ class SettingsHandler: NSObject {
         openPanel.title = NSLocalizedString("OpenPanelTitle", comment: "")
         openPanel.prompt = NSLocalizedString("OpenPanelPrompt", comment: "")
         openPanel.begin { [weak self] result in
-            guard result == NSFileHandlingPanelOKButton, openPanel.urls.count == 1 else {
+            guard result.rawValue == NSFileHandlingPanelOKButton, openPanel.urls.count == 1 else {
                 return
             }
             

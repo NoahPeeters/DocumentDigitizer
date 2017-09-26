@@ -19,14 +19,14 @@ class PersistentObjectMenuItem<T: StringIdentifiable & CustomUserInterfaceString
         self.persistentObjectHandler = persistentObjectHandler
         super.init(title: object.uiString, action: #selector(clicked), keyEquivalent: "")
         target = self
-        state = persistentObjectHandler.isEnabled(object) ? 1 : 0
+        state = NSControl.StateValue(rawValue: persistentObjectHandler.isEnabled(object) ? 1 : 0)
     }
     
     required init(coder decoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func clicked() {
+    @objc func clicked() {
         persistentObjectHandler.update(object, enabled: toggleState())
     }
 }

@@ -16,31 +16,31 @@ class MenuBarController: NSObject {
     
     @IBOutlet weak var importingMenuItem: NSMenuItem! {
         didSet {
-            importingMenuItem.state = SettingsHandler.shared.importingEnabled ? 1 : 0
+            importingMenuItem.state = NSControl.StateValue(rawValue: SettingsHandler.shared.importingEnabled ? 1 : 0)
         }
     }
     
     @IBOutlet weak var importKeepOriginalMenuItem: NSMenuItem! {
         didSet {
-            importKeepOriginalMenuItem.state = SettingsHandler.shared.importKeepOriginalEnabled ? 1 : 0
+            importKeepOriginalMenuItem.state = NSControl.StateValue(rawValue: SettingsHandler.shared.importKeepOriginalEnabled ? 1 : 0)
         }
     }
     
     @IBOutlet weak var convertMenuItem: NSMenuItem! {
         didSet {
-            convertMenuItem.state = SettingsHandler.shared.convertingEnabled ? 1 : 0
+            convertMenuItem.state = NSControl.StateValue(rawValue: SettingsHandler.shared.convertingEnabled ? 1 : 0)
         }
     }
     
     @IBOutlet weak var convertKeepOriginalMenuItem: NSMenuItem! {
         didSet {
-            convertKeepOriginalMenuItem.state = SettingsHandler.shared.convertKeepOriginalEnabled ? 1 : 0
+            convertKeepOriginalMenuItem.state = NSControl.StateValue(rawValue: SettingsHandler.shared.convertKeepOriginalEnabled ? 1 : 0)
         }
     }
     
     @IBOutlet weak var autoOpenMenuItem: NSMenuItem! {
         didSet {
-            autoOpenMenuItem.state = SettingsHandler.shared.autoOpenEnabled ? 1 : 0
+            autoOpenMenuItem.state = NSControl.StateValue(rawValue: SettingsHandler.shared.autoOpenEnabled ? 1 : 0)
         }
     }
     
@@ -58,10 +58,10 @@ class MenuBarController: NSObject {
         }
     }
     
-    private let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+    private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     
     override func awakeFromNib() {
-        let icon = NSImage(named: "StatusBarButtonImage")
+        let icon = NSImage(named: NSImage.Name(rawValue: "StatusBarButtonImage"))
         icon?.isTemplate = true
         statusItem.image = icon
         statusItem.menu = statusMenu
@@ -140,7 +140,7 @@ class MenuBarController: NSObject {
     
     private func updatePDFDPIMenu() {
         for item in pdfDPIMenu.items {
-            item.state = Int(item.title) == SettingsHandler.shared.pdfDPI ? 1 : 0
+            item.state = NSControl.StateValue(rawValue: Int(item.title) == SettingsHandler.shared.pdfDPI ? 1 : 0)
         }
     }
     
@@ -149,7 +149,7 @@ class MenuBarController: NSObject {
     }
     
     @IBAction func quitMenuItemClicked(_ sender: Any) {
-        NSApplication.shared().terminate(self)
+        NSApplication.shared.terminate(self)
     }
     
     @IBAction func toggleScanning(_ sender: NSMenuItem) {
@@ -182,7 +182,7 @@ class MenuBarController: NSObject {
     }
     
     @IBAction func openImportPath(_ sender: Any) {
-        NSWorkspace.shared().open(SettingsHandler.shared.importURL)
+        NSWorkspace.shared.open(SettingsHandler.shared.importURL)
     }
     
     @IBAction func pdfDPIMenuItemClicked(_ sender: NSMenuItem) {

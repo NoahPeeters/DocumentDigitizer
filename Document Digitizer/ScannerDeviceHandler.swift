@@ -69,7 +69,7 @@ extension ScannerDeviceHandler: ScannerDeviceMenuItemDelegate {
     
     var availableFunctionalUnitTypes: [ICScannerFunctionalUnitType] {
         return scanner.availableFunctionalUnitTypes.map {
-            ICScannerFunctionalUnitType(rawValue: UInt($0))!
+            ICScannerFunctionalUnitType(rawValue: UInt(truncating: $0))!
         }
     }
     

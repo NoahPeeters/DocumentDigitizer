@@ -27,7 +27,7 @@ class FunctionalUnitTypeMenuItem: NSMenuItem {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func clicked() {
+    @objc func clicked() {
         scannerDeviceMenuItemDelegate.requestSelect(functionalUnitType)
     }
     

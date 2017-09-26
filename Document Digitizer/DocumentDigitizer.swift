@@ -138,7 +138,7 @@ class DocumentDigitizer: NSObject {
     
     fileprivate func importCompleted(withURL url: URL, documentDigitizeProcess: DocumentDigitizeProcess, completionHandler: ((URL) -> Void)? = nil) {
         if SettingsHandler.shared.autoOpenEnabled {
-            NSWorkspace.shared().open(url)
+            NSWorkspace.shared.open(url)
         }
 
         DispatchQueue.main.async {

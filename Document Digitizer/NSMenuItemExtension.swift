@@ -10,7 +10,7 @@ import Cocoa
 
 extension NSMenuItem {
     func toggleState() -> Bool {
-        state = state == 0 ? 1 : 0
-        return state == 1
+        state = NSControl.StateValue(rawValue: state.rawValue == 0 ? 1 : 0)
+        return state.rawValue == 1
     }
 }

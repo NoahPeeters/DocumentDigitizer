@@ -56,7 +56,7 @@ class Tesseract {
         }
     }
     
-    func run(inputURL: URL, outputURL: URL, languages: [TesseractLanguage], completionBlock: @escaping (Void) -> Void) {
+    func run(inputURL: URL, outputURL: URL, languages: [TesseractLanguage], completionBlock: @escaping () -> Void) {
         let process = newTesseractProcess()
         
         process.arguments = (languages.count > 0 ? ["-l", languages.map({ return $0.shortForm }).joined(separator: "+")] : []) + [inputURL.path, outputURL.deletingPathExtension().path, outputURL.pathExtension]
