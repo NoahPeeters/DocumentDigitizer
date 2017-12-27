@@ -108,6 +108,10 @@ class DocumentDigitizer: NSObject {
                 "-density",
                 String(describing: SettingsHandler.shared.pdfDPI),
                 originalFileURL.path,
+                "-background",
+                "white",
+                "-alpha",
+                "remove",
                 tifURL.path
             ]
             

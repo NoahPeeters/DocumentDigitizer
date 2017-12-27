@@ -40,7 +40,7 @@ class Tesseract {
             
             for line in input.components(separatedBy: "\n") {
                 lineNumber += 1
-                if lineNumber > 1, line.characters.count > 0 {
+                if lineNumber > 1, line.count > 0 {
                     newLanguageList.append(line)
                 }
             }
